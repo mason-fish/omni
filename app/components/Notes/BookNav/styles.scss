@@ -1,0 +1,21 @@
+@import "../../../style-variables.scss";
+
+.book-nav {
+  min-width: $book-nav-width;
+  height: 100%;
+  border: 1px solid black;
+  background-color: cornflowerblue;
+  overflow-y: scroll;
+
+  ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      margin: 10px 3px;
+    }
+  }
+}

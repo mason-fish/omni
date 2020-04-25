@@ -15,6 +15,10 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+#root {
+  height:100%;
+}
+
 body {
   position: relative;
   color: white;

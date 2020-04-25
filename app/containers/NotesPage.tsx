@@ -1,6 +1,6 @@
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import Journal from '../components/Journal';
+import Notes from '../components/Notes';
 import {
   increment,
   decrement,
@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Journal);
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);

@@ -1,0 +1,14 @@
+@import "../../style-variables.scss";
+
+.notes-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.notes-content {
+  display: flex;
+  flex-direction: column;
+}

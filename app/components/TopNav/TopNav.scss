@@ -1,11 +1,15 @@
 @import "../../style-variables.scss";
 
 .top-nav {
+  margin: 0;
+  padding: 0;
   position: fixed;
   width: 100%;
   height: $top-nav-height;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
   background: darkseagreen;
+  display: flex;
+  align-items: center;
 
   ul {
     display: flex;

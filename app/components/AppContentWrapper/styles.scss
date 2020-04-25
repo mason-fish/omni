@@ -1,6 +1,6 @@
 @import "../../style-variables.scss";
 
 .app-content-wrapper {
-  position: relative;
-  top: $top-nav-height;
+  padding-top: $top-nav-height;
+  height: 100%;
 }
