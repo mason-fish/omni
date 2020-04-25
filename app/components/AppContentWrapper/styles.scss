@@ -1,0 +1,6 @@
+@import "../../style-variables.scss";
+
+.app-content-wrapper {
+  position: relative;
+  top: $top-nav-height;
+}

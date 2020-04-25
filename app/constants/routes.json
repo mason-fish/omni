@@ -1,4 +1,5 @@
 {
-  "MAIN": "/",
-  "JOURNAL": "/journal"
+  "MAIN": "/main",
+  "JOURNAL": "/journal",
+  "NEXT": "/next"
 }
