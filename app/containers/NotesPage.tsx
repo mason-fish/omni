@@ -1,30 +1,17 @@
-import { bindActionCreators, Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import Notes from '../components/Notes';
-import {
-  increment,
-  decrement,
-  incrementIfOdd,
-  incrementAsync
-} from '../actions/counter';
-import { counterStateType } from '../reducers/types';
+import notes from '../state/notes/selectors';
+import { FetchBooks } from '../state/notes/actions';
 
-function mapStateToProps(state: counterStateType) {
-  return {
-    counter: state.counter
-  };
+export default function NotesPage() {
+  const books = useSelector(notes.listBooks());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(FetchBooks());
+  }, []);
+
+  // return <Notes books={books} />;
+  return <Notes books={books} />;
 }
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return bindActionCreators(
-    {
-      increment,
-      decrement,
-      incrementIfOdd,
-      incrementAsync
-    },
-    dispatch
-  );
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Notes);

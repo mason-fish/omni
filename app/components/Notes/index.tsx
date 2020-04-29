@@ -5,10 +5,15 @@ import EntryNav from './EntryNav';
 import EntryToolBar from './EntryToolBar';
 import Entry from './Entry';
 
-export default function Notes() {
+type Props = {
+  books?: Book[];
+};
+
+export default function Notes(props: Props) {
+  const { books } = props;
   return (
     <div className={styles['notes-wrapper']}>
-      <BookNav />
+      <BookNav books={books} />
       <EntryNav />
       <div className={styles['notes-content']}>
         <EntryToolBar />

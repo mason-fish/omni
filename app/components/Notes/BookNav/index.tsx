@@ -1,14 +1,22 @@
 import React from 'react';
 import styles from './styles.scss';
 
-export default function BookNav() {
+type Props = {
+  books?: Book[];
+};
+
+export default function BookNav(props: Props) {
+  const { books } = props;
+  const renderBooks = (bks: Book[]) => {
+    return bks.map(bk => {
+      const { name, ID } = bk;
+      return <li key={ID}>{name}</li>;
+    });
+  };
+
   return (
     <div className={styles['book-nav']}>
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
+      <ul>{books && renderBooks(books)}</ul>
     </div>
   );
 }
