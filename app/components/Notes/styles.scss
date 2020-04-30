@@ -1,4 +1,4 @@
-@import "../../style-variables.scss";
+@import '../../style-variables.scss';
 
 .notes-wrapper {
   width: 100%;
@@ -11,4 +11,5 @@
 .notes-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
