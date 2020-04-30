@@ -2,17 +2,39 @@ import { Dispatch, Thunk } from '../types';
 import newNotesClient from '../../clients/notes';
 import { FETCH_BOOKS, FETCH_ENTRIES, NotesActionTypes } from './types';
 
-export function fetchBooks(data: Book[]): NotesActionTypes {
+export function fetchBooks(data: BookType[]): NotesActionTypes {
   return {
     type: FETCH_BOOKS,
     data
   };
 }
 
-export function fetchEntriesForBook(data: Entry[]): NotesActionTypes {
+export function fetchEntriesForBook(
+  bookID: number,
+  data: EntryType[]
+): NotesActionTypes {
   return {
     type: FETCH_ENTRIES,
-    data
+    data,
+    bookID
+  };
+}
+
+export function setCurrentBookID(bookID: number): NotesActionTypes {
+  return {
+    type: 'SET_CURRENT_BOOK_ID',
+    bookID
+  };
+}
+
+export function setCurrentEntryID(
+  bookID: number,
+  entryID: number
+): NotesActionTypes {
+  return {
+    type: 'SET_CURRENT_ENTRY_ID',
+    entryID,
+    bookID
   };
 }
 
@@ -24,7 +46,21 @@ export function FetchBooks(): Thunk {
       .then(books => {
         return dispatch(fetchBooks(books));
       })
+      // eslint-disable-next-line no-console
       .catch(() => console.error('fetchBooks failed'));
+  };
+}
+
+// TODO: change to be for current?
+export function FetchEntriesForBook(bookID: number): Thunk {
+  return (dispatch: Dispatch) => {
+    const c = newNotesClient('http://localhost:8080');
+    c.listEntriesForBook(bookID)
+      .then(entries => {
+        return dispatch(fetchEntriesForBook(bookID, entries));
+      })
+      // eslint-disable-next-line no-console
+      .catch(() => console.error('fetchEntries failed'));
   };
 }
 

@@ -2,15 +2,28 @@ import React from 'react';
 import styles from './styles.scss';
 
 type Props = {
-  books?: Book[];
+  books?: BookType[];
+  currentBookID: number;
+  onSelectBook(bookID: number): void;
 };
 
-export default function BookNav(props: Props) {
-  const { books } = props;
-  const renderBooks = (bks: Book[]) => {
+export default function BookNav({ books, currentBookID, onSelectBook }: Props) {
+  const renderBooks = (bks: BookType[]) => {
     return bks.map(bk => {
       const { name, ID } = bk;
-      return <li key={ID}>{name}</li>;
+      return (
+        // TODO: Turn ESLint back on and fix this bullshit
+        <li key={ID}>
+          <div
+            role="button"
+            onClick={() => onSelectBook(ID)}
+            onKeyDown={() => {}}
+            tabIndex={0}
+          >
+            {ID === currentBookID ? `*${name}` : `${name}`}
+          </div>
+        </li>
+      );
     });
   };
 

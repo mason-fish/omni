@@ -1,14 +1,13 @@
-interface Book extends Base {
-  ID: number;
+interface BookType extends BaseType {
   name: string;
 }
 
-interface Entry extends Base {
+interface EntryType extends BaseType {
   title: string;
   content: string;
 }
 
-interface Base {
+interface BaseType {
   ID: number;
   CreatedAt: Date;
   UpdatedAt: Date;

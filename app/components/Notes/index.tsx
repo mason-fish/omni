@@ -6,18 +6,39 @@ import EntryToolBar from './EntryToolBar';
 import Entry from './Entry';
 
 type Props = {
-  books?: Book[];
+  books?: BookType[];
+  entries?: EntryType[];
+  currentBookID: number;
+  currentEntryID: number;
+  onSelectBook(bookID: number): void;
+  onSelectEntry(bookID: number, entryID: number): void;
 };
 
 export default function Notes(props: Props) {
-  const { books } = props;
+  const {
+    books,
+    entries,
+    onSelectBook,
+    onSelectEntry,
+    currentBookID,
+    currentEntryID
+  } = props;
   return (
     <div className={styles['notes-wrapper']}>
-      <BookNav books={books} />
-      <EntryNav />
+      <BookNav
+        books={books}
+        onSelectBook={onSelectBook}
+        currentBookID={currentBookID}
+      />
+      <EntryNav
+        entries={entries}
+        onSelectEntry={onSelectEntry}
+        currentBookID={currentBookID}
+        currentEntryID={currentEntryID}
+      />
       <div className={styles['notes-content']}>
         <EntryToolBar />
-        <Entry />
+        <Entry entries={entries} currentEntryID={currentEntryID} />
       </div>
     </div>
   );
