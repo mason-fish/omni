@@ -1,4 +1,5 @@
-import { Dispatch, Thunk } from '../types';
+import { AnyAction } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import newNotesClient from '../../clients/notes';
 import { FETCH_BOOKS, FETCH_ENTRIES, NotesActionTypes } from './types';
 
@@ -38,29 +39,42 @@ export function setCurrentEntryID(
   };
 }
 
-export function FetchBooks(): Thunk {
-  return (dispatch: Dispatch) => {
-    // TODO: just call getClient or use package to save this line and dup config
-    const c = newNotesClient('http://localhost:8080');
-    c.listBooks()
-      .then(books => {
-        return dispatch(fetchBooks(books));
-      })
-      // eslint-disable-next-line no-console
-      .catch(() => console.error('fetchBooks failed'));
+export function FetchEntriesForBook(
+  bookID: number
+): ThunkAction<Promise<EntryType[]>, {}, {}, AnyAction> {
+  return (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<EntryType[]> => {
+    return new Promise<EntryType[]>(() => {
+      const c = newNotesClient('http://localhost:8080');
+      c.listEntriesForBook(bookID)
+        .then(entries => {
+          return dispatch(fetchEntriesForBook(bookID, entries));
+        })
+        .catch(err => {
+          throw new Error(`fetchEntries failed ${err}`);
+        });
+    });
   };
 }
 
-// TODO: change to be for current?
-export function FetchEntriesForBook(bookID: number): Thunk {
-  return (dispatch: Dispatch) => {
-    const c = newNotesClient('http://localhost:8080');
-    c.listEntriesForBook(bookID)
-      .then(entries => {
-        return dispatch(fetchEntriesForBook(bookID, entries));
-      })
-      // eslint-disable-next-line no-console
-      .catch(() => console.error('fetchEntries failed'));
+export function initNotes(): ThunkAction<Promise<void>, {}, {}, AnyAction> {
+  return (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
+    return new Promise<void>(resolve => {
+      // TODO: just call getClient or use package to save this line and dup config
+      const c = newNotesClient('http://localhost:8080');
+      c.listBooks()
+        .then(books => {
+          if (books.length !== 0) {
+            const firstBookID = books[0].ID;
+            dispatch(setCurrentBookID(firstBookID));
+            dispatch(FetchEntriesForBook(firstBookID));
+          }
+          dispatch(fetchBooks(books));
+          return resolve();
+        })
+        .catch(err => {
+          throw new Error(`listBooks failed: ${err}`);
+        });
+    });
   };
 }
 

@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Notes from '../components/Notes';
 import notes from '../state/notes/selectors';
 import {
-  FetchBooks,
   FetchEntriesForBook,
+  initNotes,
   setCurrentBookID,
   setCurrentEntryID
 } from '../state/notes/actions';
@@ -27,7 +27,7 @@ export default function NotesPage() {
   };
 
   useEffect(() => {
-    dispatch(FetchBooks());
+    dispatch(initNotes());
   }, []);
 
   // return <Notes books={books} />;

@@ -24,15 +24,14 @@ export default function reducers(
       action.data.forEach(b => {
         entries = get(state, ['books', b.ID, 'entries'], {});
         books[b.ID] = {
+          ...state.books[b.ID],
           entries,
-          book: b,
-          currentEntryID: 0
+          book: b
         };
       });
       return {
         ...state,
-        books,
-        currentBookID: 0
+        books
       };
     case FETCH_ENTRIES:
       action.data.forEach(e => {
