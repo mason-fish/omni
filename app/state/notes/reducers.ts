@@ -3,7 +3,9 @@ import { BooksState, State } from '../types';
 import {
   FETCH_BOOKS,
   FETCH_ENTRIES,
+  FETCH_ENTRY,
   NotesActionTypes,
+  REFRESH_ENTRY_TITLE,
   SET_CURRENT_BOOK_ID,
   SET_CURRENT_ENTRY_ID
 } from './types';
@@ -61,6 +63,37 @@ export default function reducers(
           [action.bookID]: {
             ...state.books[action.bookID],
             currentEntryID: action.entryID
+          }
+        }
+      };
+    case REFRESH_ENTRY_TITLE:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [action.bookID]: {
+            ...state.books[action.bookID],
+            entries: {
+              ...state.books[action.bookID].entries,
+              [action.entryID]: {
+                ...state.books[action.bookID].entries[action.entryID],
+                title: action.title
+              }
+            }
+          }
+        }
+      };
+    case FETCH_ENTRY:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [action.bookID]: {
+            ...state.books[action.bookID],
+            entries: {
+              ...state.books[action.bookID].entries,
+              [action.entryID]: action.data
+            }
           }
         }
       };

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './styles.scss';
-import BookNav from './BookNav';
 import EntryNav from './EntryNav';
 import EntryToolBar from './EntryToolBar';
 import Entry from './Entry';
@@ -32,13 +31,10 @@ export default function Notes(props: Props) {
 
   return (
     <div className={styles['notes-wrapper']}>
-      <BookNav
-        books={books}
-        onSelectBook={onSelectBook}
-        currentBookID={currentBookID}
-      />
       <EntryNav
         entries={entries}
+        books={books}
+        onSelectBook={onSelectBook}
         onSelectEntry={onSelectEntry}
         currentBookID={currentBookID}
         currentEntryID={currentEntryID}
@@ -48,6 +44,7 @@ export default function Notes(props: Props) {
         <Entry
           entries={entries}
           currentEntryID={currentEntryID}
+          currentBookID={currentBookID}
           isEditView={isEditView}
         />
       </div>

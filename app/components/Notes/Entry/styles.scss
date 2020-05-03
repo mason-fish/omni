@@ -10,10 +10,6 @@
   background-color: white;
   overflow-y: scroll;
 
-  li {
-    list-style: disc;
-  }
-
   textarea {
     &:focus {
       -webkit-box-shadow: none;
@@ -22,5 +18,31 @@
 
     border: none;
     resize: none;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+
+    textarea {
+      font-size: 14pt;
+    }
+
+    .timestamps {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      align-content: center;
+      justify-content: space-around;
+      p {
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+      }
+    }
+  }
+
+  li {
+    list-style: disc;
   }
 }
