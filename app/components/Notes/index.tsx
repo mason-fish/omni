@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.scss';
 import BookNav from './BookNav';
 import EntryNav from './EntryNav';
@@ -23,6 +23,13 @@ export default function Notes(props: Props) {
     currentBookID,
     currentEntryID
   } = props;
+
+  const [isEditView, setIsEditView] = useState(true);
+
+  const onToggleView = () => {
+    setIsEditView(c => !c);
+  };
+
   return (
     <div className={styles['notes-wrapper']}>
       <BookNav
@@ -37,8 +44,12 @@ export default function Notes(props: Props) {
         currentEntryID={currentEntryID}
       />
       <div className={styles['notes-content']}>
-        <EntryToolBar />
-        <Entry entries={entries} currentEntryID={currentEntryID} />
+        <EntryToolBar onToggleView={onToggleView} />
+        <Entry
+          entries={entries}
+          currentEntryID={currentEntryID}
+          isEditView={isEditView}
+        />
       </div>
     </div>
   );

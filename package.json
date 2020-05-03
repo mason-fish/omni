@@ -191,6 +191,7 @@
     "@types/react-router-dom": "^5.1.3",
     "@types/react-test-renderer": "^16.9.2",
     "@types/redux-logger": "^3.0.7",
+    "@types/showdown": "^1.9.3",
     "@types/sinon": "^7.5.2",
     "@types/tapable": "^1.0.5",
     "@types/vfile-message": "^2.0.0",
@@ -268,6 +269,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@hot-loader/react-dom": "^16.13.0",
+    "antd": "^4.2.0",
     "connected-react-router": "^6.6.1",
     "core-js": "^3.6.4",
     "devtron": "^1.4.0",
@@ -276,15 +278,21 @@
     "electron-updater": "^4.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "history": "^4.10.1",
+    "moment": "2.24.0",
+    "moment-timezone": "^0.5.28",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.19",
+    "react-markdown": "^4.3.1",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "source-map-support": "^0.5.16"
+  },
+  "resolutions": {
+    "moment": "2.24.0"
   },
   "devEngines": {
     "node": ">=7.x",
