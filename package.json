@@ -267,6 +267,7 @@
     "yarn": "^1.21.1"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@hot-loader/react-dom": "^16.13.0",
     "antd": "^4.2.0",
