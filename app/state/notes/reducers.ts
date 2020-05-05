@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 import { BooksState, State } from '../types';
 import {
+  CREATE_BOOK,
+  CREATE_ENTRY,
+  DELETE_BOOK,
+  DELETE_ENTRY,
   FETCH_BOOKS,
   FETCH_ENTRIES,
   FETCH_ENTRY,
@@ -21,6 +25,7 @@ export default function reducers(
 ): State {
   const books = {} as BooksState;
   let entries = {} as { [key: number]: EntryType };
+  const newState = state;
   switch (action.type) {
     case FETCH_BOOKS:
       action.data.forEach(b => {
@@ -96,6 +101,49 @@ export default function reducers(
             }
           }
         }
+      };
+    case CREATE_BOOK:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [action.data.ID]: {
+            book: action.data,
+            currentEntryID: 0,
+            entries: []
+          }
+        }
+      };
+    case CREATE_ENTRY:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [action.bookID]: {
+            ...state.books[action.bookID],
+            entries: {
+              ...state.books[action.bookID].entries,
+              [action.data.ID]: action.data
+            }
+          }
+        }
+      };
+    case DELETE_BOOK:
+      delete newState.books[action.bookID];
+      if (newState.currentBookID === action.bookID) {
+        newState.currentBookID = 0;
+      }
+      return {
+        ...newState
+      };
+    case DELETE_ENTRY:
+      delete newState.books[action.bookID].entries[action.entryID];
+      // reset current ID if we just deleted that entry
+      if (newState.books[action.bookID].currentEntryID === action.entryID) {
+        newState.books[action.bookID].currentEntryID = 0;
+      }
+      return {
+        ...newState
       };
     default:
       return state;

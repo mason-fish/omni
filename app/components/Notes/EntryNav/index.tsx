@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Menu, message, Tooltip } from 'antd';
+import { Button, Dropdown, Menu, Tooltip } from 'antd';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import find from 'lodash/find';
+import { useDispatch } from 'react-redux';
 import styles from './styles.scss';
 import CreateBookModalForm from './CreateBookModalForm';
+import { CreateBook, CreateEntry } from '../../../state/notes/flows';
 
 type Props = {
   entries?: EntryType[];
@@ -22,6 +24,7 @@ export default function EntryNav({
   onSelectEntry,
   onSelectBook
 }: Props) {
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const renderEntryTitles = (entrs?: EntryType[]) => {
     return entrs ? (
@@ -72,6 +75,10 @@ export default function EntryNav({
     </Menu>
   );
 
+  const onCreateNewEntry = () => {
+    dispatch(CreateEntry(currentBookID));
+  };
+
   return (
     <div className={styles['entry-nav']}>
       <Dropdown overlay={menu}>
@@ -82,14 +89,15 @@ export default function EntryNav({
       </Dropdown>
       <CreateBookModalForm
         visible={modalVisible}
-        onCreate={({ title }) => {
-          message.info(`creating book with title: ${title}`);
+        onCreate={({ name }) => {
+          dispatch(CreateBook(name));
+          setModalVisible(false);
         }}
         onCancel={() => setModalVisible(false)}
       />
       <Tooltip title="New Entry">
         <Button
-          onClick={() => message.info('Got it, will create a new entry')}
+          onClick={() => onCreateNewEntry()}
           type="primary"
           shape="circle"
           icon={<PlusOutlined />}

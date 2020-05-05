@@ -4,8 +4,8 @@ interface NotesClient {
   listEntriesForBook(bookID: number): Promise<EntryType[]>;
   updateEntry(bookID: number, entryID: number, data: {}): Promise<EntryType>;
   getEntryByID(bookID: number, entryID: number): Promise<EntryType>;
-  createBook(): Promise<BookType>;
-  createEntryForBook(bookID: number): Promise<EntryType>;
+  createBook(name: string): Promise<BookType>;
+  createEntryForBook(bookID: number, title: string): Promise<EntryType>;
   deleteBook(bookID: number): Promise<void>;
   deleteBookEntry(bookID: number, entryID: number): Promise<void>;
 }
@@ -71,13 +71,13 @@ export default function newNotesClient(
       const url = `${host}/books/${bookID}/entries/${entryID}`;
       return doFetch(url, Method.GET).then(res => res.data);
     },
-    createBook(): Promise<BookType> {
+    createBook(name: string): Promise<BookType> {
       const url = `${host}/books`;
-      return doFetch(url, Method.POST).then(res => res.data);
+      return doFetch(url, Method.POST, { name }).then(res => res.data);
     },
-    createEntryForBook(bookID: number): Promise<EntryType> {
+    createEntryForBook(bookID: number, title: string): Promise<EntryType> {
       const url = `${host}/books/${bookID}/entries`;
-      return doFetch(url, Method.POST).then(res => res.data);
+      return doFetch(url, Method.POST, { title }).then(res => res.data);
     },
     deleteBook(bookID: number): Promise<void> {
       const url = `${host}/books/${bookID}`;

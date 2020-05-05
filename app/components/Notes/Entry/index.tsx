@@ -25,14 +25,13 @@ export default function Entry({
   const dispatch = useDispatch();
   const currentEntry = find(entries, ent => ent.ID === currentEntryID);
   const currentEntryContent = currentEntry ? currentEntry.content : '';
-  const currentEntryTitle = currentEntry ? currentEntry.title : '';
+  const currentEntryTitle = currentEntry && currentEntry.title;
 
   const [content, setContent] = useState(currentEntryContent);
   const [title, setTitle] = useState(currentEntryTitle);
   const [entryID, setEntryID] = useState(currentEntryID);
   const prevContent = usePrevious(content);
   const prevEntryID = usePrevious(entryID);
-  const prevTitle = usePrevious(title);
   useDebouncedEffect(
     () => {
       if (prevEntryID !== entryID) {
@@ -49,25 +48,6 @@ export default function Entry({
     },
     1000,
     [content, entryID]
-  );
-
-  useDebouncedEffect(
-    () => {
-      if (prevEntryID !== entryID) {
-        return;
-      }
-      if (!prevContent || prevTitle === title) {
-        return;
-      }
-
-      newNotesClient().updateEntry(currentBookID, currentEntryID, {
-        title
-      });
-      // update title for rest of app
-      dispatch(refreshEntryTitle(currentBookID, currentEntryID, title));
-    },
-    1000,
-    [title, entryID]
   );
 
   useEffect(() => {
@@ -89,15 +69,22 @@ export default function Entry({
   const updateTitle = ({
     target: { value }
   }: ChangeEvent<HTMLTextAreaElement>) => {
-    setTitle(value);
+    newNotesClient().updateEntry(currentBookID, currentEntryID, {
+      title: value
+    });
+    dispatch(refreshEntryTitle(currentBookID, currentEntryID, value));
   };
 
   const renderTitle = () => {
     if (!currentEntry) return null;
-    return isEditView ? (
-      <TextArea onChange={updateTitle} value={title || 'Title'} autoSize />
-    ) : (
-      <h1>{title}</h1>
+    return (
+      <TextArea
+        onBlur={updateTitle}
+        onChange={({ target: { value } }) => setTitle(value)}
+        value={title}
+        autoSize
+        readOnly={!isEditView}
+      />
     );
   };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, message, Modal } from 'antd';
 
 interface Values {
-  title: string;
+  name: string;
 }
 
 interface CollectionCreateFormProps {
@@ -47,9 +47,9 @@ export default function CreateBookModalForm({
         initialValues={{}}
       >
         <Form.Item
-          name="title"
-          label="Title"
-          rules={[{ required: true, message: 'Please input the book title!' }]}
+          name="name"
+          label="Name"
+          rules={[{ required: true, message: 'Please input the book name!' }]}
         >
           <Input />
         </Form.Item>
