@@ -4,13 +4,14 @@ import styles from './styles.scss';
 
 type Props = {
   onToggleView(): void;
+  isEditView: boolean;
 };
 
-export default function EntryToolBar({ onToggleView }: Props) {
+export default function EntryToolBar({ onToggleView, isEditView }: Props) {
   return (
     <div className={styles['entry-toolbar']}>
       <Button type="primary" onClick={() => onToggleView()}>
-        Toggle View
+        {isEditView ? 'Markdown Mode' : 'Edit Mode'}
       </Button>
     </div>
   );

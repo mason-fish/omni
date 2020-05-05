@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Menu, Tooltip } from 'antd';
+import { Button, Dropdown, Menu, Tooltip, Layout } from 'antd';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import find from 'lodash/find';
 import { useDispatch } from 'react-redux';
 import styles from './styles.scss';
 import CreateBookModalForm from './CreateBookModalForm';
 import { CreateBook, CreateEntry } from '../../../state/notes/flows';
+
+const { Sider } = Layout;
 
 type Props = {
   entries?: EntryType[];
@@ -27,24 +29,22 @@ export default function EntryNav({
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const renderEntryTitles = (entrs?: EntryType[]) => {
-    return entrs ? (
-      entrs.map(entr => {
-        const { title, ID } = entr;
-        return (
-          <li key={ID}>
-            <div
-              role="button"
-              onClick={() => onSelectEntry(currentBookID, ID)}
-              onKeyPress={() => {}}
-              tabIndex={0}
-            >
-              {ID === currentEntryID ? `*${title}` : `${title}`}
-            </div>
-          </li>
-        );
-      })
-    ) : (
-      <li>No Entries Exist</li>
+    return (
+      <Menu
+        onClick={({ key }) => onSelectEntry(currentBookID, +key)}
+        theme="dark"
+        defaultSelectedKeys={[`${currentEntryID}`]}
+        mode="inline"
+      >
+        {entrs ? (
+          entrs.map(entr => {
+            const { title, ID } = entr;
+            return <Menu.Item key={ID}>{title}</Menu.Item>;
+          })
+        ) : (
+          <li>No Entries Exist</li>
+        )}
+      </Menu>
     );
   };
 
@@ -64,11 +64,7 @@ export default function EntryNav({
       {books &&
         books.map(bk => {
           const { name, ID } = bk;
-          return (
-            <Menu.Item key={ID}>
-              {currentBookName === name ? `* ${name}` : name}
-            </Menu.Item>
-          );
+          return <Menu.Item key={ID}>{name}</Menu.Item>;
         })}
       <Menu.Divider />
       <Menu.Item key="new-book">+ Create New Book</Menu.Item>
@@ -80,30 +76,34 @@ export default function EntryNav({
   };
 
   return (
-    <div className={styles['entry-nav']}>
-      <Dropdown overlay={menu}>
-        <Button className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-          {currentBookName}
-          <DownOutlined />
-        </Button>
-      </Dropdown>
-      <CreateBookModalForm
-        visible={modalVisible}
-        onCreate={({ name }) => {
-          dispatch(CreateBook(name));
-          setModalVisible(false);
-        }}
-        onCancel={() => setModalVisible(false)}
-      />
-      <Tooltip title="New Entry">
-        <Button
-          onClick={() => onCreateNewEntry()}
-          type="primary"
-          shape="circle"
-          icon={<PlusOutlined />}
+    <Sider className={styles['entry-nav']}>
+      <div className={styles.buttons}>
+        <Dropdown overlay={menu}>
+          <Button
+            className={styles['book-select-dropdown']}
+            onClick={e => e.preventDefault()}
+          >
+            {currentBookName}
+            <DownOutlined />
+          </Button>
+        </Dropdown>
+        <CreateBookModalForm
+          visible={modalVisible}
+          onCreate={({ name }) => {
+            dispatch(CreateBook(name));
+            setModalVisible(false);
+          }}
+          onCancel={() => setModalVisible(false)}
         />
-      </Tooltip>
-      <ul>{renderEntryTitles(entries)}</ul>
-    </div>
+        <Tooltip title="New Entry">
+          <Button
+            onClick={() => onCreateNewEntry()}
+            type="primary"
+            icon={<PlusOutlined />}
+          />
+        </Tooltip>
+      </div>
+      {renderEntryTitles(entries)}
+    </Sider>
   );
 }

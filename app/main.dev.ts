@@ -55,6 +55,7 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
+    frame: false,
     webPreferences:
       process.env.NODE_ENV === 'development'
         ? {

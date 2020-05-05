@@ -4,10 +4,13 @@ import ReactMarkdown from 'react-markdown';
 import TextArea from 'antd/es/input/TextArea';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
+import { Layout } from 'antd';
 import styles from './styles.scss';
 import { useDebouncedEffect, usePrevious } from '../../../hooks';
 import newNotesClient from '../../../clients/notes';
 import { refreshEntryTitle } from '../../../state/notes/actions';
+
+const { Content } = Layout;
 
 type Props = {
   entries?: EntryType[];
@@ -114,10 +117,10 @@ export default function Entry({
   };
 
   return (
-    <div className={styles.entry}>
+    <Content className={styles.entry}>
       {renderEntryMeta()}
       {currentEntry && <hr />}
       {renderContent()}
-    </div>
+    </Content>
   );
 }

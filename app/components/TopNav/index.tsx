@@ -1,23 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import { useLocation } from 'react-router';
 import styles from './TopNav.scss';
 import routes from '../../constants/routes.json';
 
+const { Header } = Layout;
+
 export default function TopNav() {
+  const location = useLocation();
   return (
-    <nav className={styles['top-nav']}>
+    <Header className={styles['top-nav']}>
       <div className={styles.logo}>OMNI</div>
-      <ul>
-        <Link to={routes.MAIN}>
-          <li>Main</li>
-        </Link>
-        <Link to={routes.NOTES}>
-          <li>Notes</li>
-        </Link>
-        <Link to={routes.NEXT}>
-          <li>Next Project</li>
-        </Link>
-      </ul>
-    </nav>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={[location.pathname]}
+      >
+        <Menu.Item key={routes.MAIN}>
+          <Link to={routes.MAIN}>Main</Link>
+        </Menu.Item>
+        <Menu.Item key={routes.NOTES}>
+          <Link to={routes.NOTES}>Notes</Link>
+        </Menu.Item>
+        <Menu.Item key={routes.NEXT}>
+          <Link to={routes.NEXT}>Next Project</Link>
+        </Menu.Item>
+      </Menu>
+    </Header>
   );
 }

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { Layout } from 'antd';
 import styles from './styles.scss';
 import EntryNav from './EntryNav';
 import EntryToolBar from './EntryToolBar';
 import Entry from './Entry';
+
+const { Content } = Layout;
 
 type Props = {
   books?: BookType[];
@@ -30,7 +33,7 @@ export default function Notes(props: Props) {
   };
 
   return (
-    <div className={styles['notes-wrapper']}>
+    <Layout style={{ height: '100%' }}>
       <EntryNav
         entries={entries}
         books={books}
@@ -39,15 +42,17 @@ export default function Notes(props: Props) {
         currentBookID={currentBookID}
         currentEntryID={currentEntryID}
       />
-      <div className={styles['notes-content']}>
-        <EntryToolBar onToggleView={onToggleView} />
-        <Entry
-          entries={entries}
-          currentEntryID={currentEntryID}
-          currentBookID={currentBookID}
-          isEditView={isEditView}
-        />
-      </div>
-    </div>
+      <Content style={{ height: '100%' }}>
+        <Layout className={styles['notes-wrapper']}>
+          <EntryToolBar isEditView={isEditView} onToggleView={onToggleView} />
+          <Entry
+            entries={entries}
+            currentEntryID={currentEntryID}
+            currentBookID={currentBookID}
+            isEditView={isEditView}
+          />
+        </Layout>
+      </Content>
+    </Layout>
   );
 }
