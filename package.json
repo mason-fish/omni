@@ -91,14 +91,14 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "",
-      "repo": "",
+      "owner": "mason-fish",
+      "repo": "omni",
       "private": false
     }
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/mason-fish/omni.git"
   },
   "author": {
     "name": "Mason Fish",
