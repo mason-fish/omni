@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react';
+import { Layout } from 'antd';
 import styles from './styles.scss';
+
+const { Content } = Layout;
 
 type Props = {
   children: ReactNode;
@@ -7,5 +10,7 @@ type Props = {
 
 export default function AppContentWrapper(props: Props) {
   const { children } = props;
-  return <div className={styles['app-content-wrapper']}>{children}</div>;
+  return (
+    <Content className={styles['app-content-wrapper']}>{children}</Content>
+  );
 }

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Layout } from 'antd';
 import styles from './styles.scss';
-import BookNav from './BookNav';
 import EntryNav from './EntryNav';
 import EntryToolBar from './EntryToolBar';
 import Entry from './Entry';
+
+const { Content } = Layout;
 
 type Props = {
   books?: BookType[];
@@ -23,23 +25,34 @@ export default function Notes(props: Props) {
     currentBookID,
     currentEntryID
   } = props;
+
+  const [isEditView, setIsEditView] = useState(true);
+
+  const onToggleView = () => {
+    setIsEditView(c => !c);
+  };
+
   return (
-    <div className={styles['notes-wrapper']}>
-      <BookNav
-        books={books}
-        onSelectBook={onSelectBook}
-        currentBookID={currentBookID}
-      />
+    <Layout style={{ height: '100%' }}>
       <EntryNav
         entries={entries}
+        books={books}
+        onSelectBook={onSelectBook}
         onSelectEntry={onSelectEntry}
         currentBookID={currentBookID}
         currentEntryID={currentEntryID}
       />
-      <div className={styles['notes-content']}>
-        <EntryToolBar />
-        <Entry entries={entries} currentEntryID={currentEntryID} />
-      </div>
-    </div>
+      <Content style={{ height: '100%' }}>
+        <Layout className={styles['notes-wrapper']}>
+          <EntryToolBar isEditView={isEditView} onToggleView={onToggleView} />
+          <Entry
+            entries={entries}
+            currentEntryID={currentEntryID}
+            currentBookID={currentBookID}
+            isEditView={isEditView}
+          />
+        </Layout>
+      </Content>
+    </Layout>
   );
 }

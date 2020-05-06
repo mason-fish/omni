@@ -16,8 +16,9 @@ export default {
   listEntriesForBook: (bookID: number) => (state: RootState): EntryType[] => {
     const entries = get(state, ['notes', 'books', bookID, 'entries'], {});
     return Object.values(entries).sort((en1, en2) => {
+      // TODO: this is not sorting properly
       return (
-        new Date(en1.UpdatedAt).getTime() - new Date(en2.UpdatedAt).getTime()
+        new Date(en1.CreatedAt).getTime() - new Date(en2.CreatedAt).getTime()
       );
     });
   },

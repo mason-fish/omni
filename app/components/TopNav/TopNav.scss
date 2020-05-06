@@ -1,24 +1,17 @@
-@import "../../style-variables.scss";
+@import '../../style-variables.scss';
 
 .top-nav {
-  margin: 0;
-  padding: 0;
   position: fixed;
   width: 100%;
+  z-index: 1;
   height: $top-nav-height;
-  border: 1px solid black;
-  background: darkseagreen;
-  display: flex;
-  align-items: center;
+  line-height: $top-nav-height;
 
-  ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-    li {
-      margin: 0 15px;
-      padding: 3px 5px;
-    }
+  .logo {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+    color: white;
   }
 }

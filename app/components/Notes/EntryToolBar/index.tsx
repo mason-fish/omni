@@ -1,14 +1,18 @@
 import React from 'react';
+import { Button } from 'antd';
 import styles from './styles.scss';
 
-export default function EntryToolBar() {
+type Props = {
+  onToggleView(): void;
+  isEditView: boolean;
+};
+
+export default function EntryToolBar({ onToggleView, isEditView }: Props) {
   return (
     <div className={styles['entry-toolbar']}>
-      <ul>
-        <li>Entry 1</li>
-        <li>Entry 2</li>
-        <li>Entry 3</li>
-      </ul>
+      <Button type="primary" onClick={() => onToggleView()}>
+        {isEditView ? 'Markdown Mode' : 'Edit Mode'}
+      </Button>
     </div>
   );
 }

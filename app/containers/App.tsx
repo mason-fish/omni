@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Layout } from 'antd';
 
 type Props = {
   children: ReactNode;
@@ -6,5 +7,7 @@ type Props = {
 
 export default function App(props: Props) {
   const { children } = props;
-  return <>{children}</>;
+  return (
+    <Layout style={{ background: 'none', height: '100%' }}>{children}</Layout>
+  );
 }

@@ -1,8 +1,8 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
+  "name": "omni",
+  "productName": "Omni",
   "version": "1.1.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Multi-productivity app",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
@@ -47,7 +47,7 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
+    "productName": "Omni",
     "appId": "org.develar.ElectronReact",
     "files": [
       "dist/",
@@ -101,25 +101,14 @@
     "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
   },
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "Mason Fish",
+    "email": "mason.e.fish@gmail.com",
+    "url": ""
   },
-  "contributors": [
-    {
-      "name": "Vikram Rangaraj",
-      "email": "vikr01@icloud.com",
-      "url": "https://github.com/vikr01"
-    },
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": ""
   },
   "keywords": [
     "electron",
@@ -133,7 +122,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "",
   "jest": {
     "testURL": "http://localhost/",
     "moduleNameMapper": {
@@ -191,6 +180,7 @@
     "@types/react-router-dom": "^5.1.3",
     "@types/react-test-renderer": "^16.9.2",
     "@types/redux-logger": "^3.0.7",
+    "@types/showdown": "^1.9.3",
     "@types/sinon": "^7.5.2",
     "@types/tapable": "^1.0.5",
     "@types/vfile-message": "^2.0.0",
@@ -266,8 +256,10 @@
     "yarn": "^1.21.1"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@hot-loader/react-dom": "^16.13.0",
+    "antd": "^4.2.0",
     "connected-react-router": "^6.6.1",
     "core-js": "^3.6.4",
     "devtron": "^1.4.0",
@@ -276,15 +268,21 @@
     "electron-updater": "^4.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "history": "^4.10.1",
+    "moment": "2.24.0",
+    "moment-timezone": "^0.5.28",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.19",
+    "react-markdown": "^4.3.1",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "source-map-support": "^0.5.16"
+  },
+  "resolutions": {
+    "moment": "2.24.0"
   },
   "devEngines": {
     "node": ">=7.x",

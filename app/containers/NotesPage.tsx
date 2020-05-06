@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import Notes from '../components/Notes';
 import notes from '../state/notes/selectors';
+import { setCurrentBookID, setCurrentEntryID } from '../state/notes/actions';
 import {
-  FetchBooks,
   FetchEntriesForBook,
-  setCurrentBookID,
-  setCurrentEntryID
-} from '../state/notes/actions';
+  FetchEntryByID,
+  initNotes
+} from '../state/notes/flows';
 
 export default function NotesPage() {
   const books = useSelector(notes.listBooks());
@@ -19,6 +19,7 @@ export default function NotesPage() {
 
   const onSelectEntry = (bookID: number, entryID: number) => {
     dispatch(setCurrentEntryID(bookID, entryID));
+    dispatch(FetchEntryByID(bookID, entryID));
   };
 
   const onSelectBook = (bookID: number) => {
@@ -27,7 +28,7 @@ export default function NotesPage() {
   };
 
   useEffect(() => {
-    dispatch(FetchBooks());
+    dispatch(initNotes());
   }, []);
 
   // return <Notes books={books} />;
