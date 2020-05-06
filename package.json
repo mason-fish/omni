@@ -1,5 +1,5 @@
 {
-  "name": "omni",
+  "name": "Omni",
   "productName": "Omni",
   "version": "1.1.0",
   "description": "Multi-productivity app",
@@ -91,14 +91,14 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate",
+      "owner": "",
+      "repo": "",
       "private": false
     }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": ""
   },
   "author": {
     "name": "Mason Fish",
@@ -110,18 +110,7 @@
   "bugs": {
     "url": ""
   },
-  "keywords": [
-    "electron",
-    "boilerplate",
-    "react",
-    "redux",
-    "typescript",
-    "ts",
-    "sass",
-    "webpack",
-    "hot",
-    "reload"
-  ],
+  "keywords": [],
   "homepage": "",
   "jest": {
     "testURL": "http://localhost/",
