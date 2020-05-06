@@ -4,14 +4,23 @@
   position: fixed;
   width: 100%;
   z-index: 1;
+  padding: 0 !important;
   height: $top-nav-height;
   line-height: $top-nav-height;
 
   .logo {
     float: left;
-    width: 40px;
-    height: 40px;
+    display: flex;
+    width: 120px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 0 20px;
     color: white;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }

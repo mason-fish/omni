@@ -1,55 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="280px" height="280px" viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Omni Logo</title>
+<svg viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Oval 2</title>
   <g id="Omni-Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <circle id="Oval-2" stroke="#000000" stroke-width="2" fill="#F0EBEB" cx="140" cy="140" r="139"></circle>
-    <g id="Top-Pair" transform="translate(99.000000, 57.000000)" stroke="#000000" stroke-width="2">
-      <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square">
-        <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+    <g id="Oval-2" stroke="#000000">
+      <circle stroke-width="2" fill="#F0EBEB" cx="140" cy="140" r="139"></circle>
+      <g id="Top-Pair" stroke-width="1" transform="translate(99.000000, 57.000000)">
+        <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
+        <circle id="Oval" stroke-width="2" fill="#2A5BA5" cx="11" cy="11" r="10"></circle>
+        <circle id="Oval" stroke-width="2" fill="#33AB2A" cx="71" cy="11" r="10"></circle>
+        <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
       </g>
-      <circle id="Oval" fill="#2A5BA5" cx="11" cy="11" r="10"></circle>
-      <circle id="Oval" fill="#33AB2A" cx="71" cy="11" r="10"></circle>
-      <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square">
-        <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+      <g id="Top-Pair" stroke-width="1" transform="translate(200.000000, 140.500000) rotate(90.000000) translate(-200.000000, -140.500000) translate(159.000000, 119.000000)">
+        <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
+        <circle id="Oval" stroke-width="2" fill="#F2D661" cx="11" cy="11" r="10"></circle>
+        <circle id="Oval" stroke-width="2" fill="#33AB2A" cx="71" cy="11" r="10"></circle>
+        <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
       </g>
-    </g>
-    <g id="Top-Pair" transform="translate(200.000000, 140.500000) rotate(90.000000) translate(-200.000000, -140.500000) translate(159.000000, 119.000000)" stroke="#000000" stroke-width="2">
-      <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square">
-        <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+      <g id="Top-Pair" stroke-width="1" transform="translate(79.000000, 139.500000) rotate(-90.000000) translate(-79.000000, -139.500000) translate(38.000000, 118.000000)">
+        <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
+        <circle id="Oval" stroke-width="2" fill="#F2D661" cx="11" cy="11" r="10"></circle>
+        <circle id="Oval" stroke-width="2" fill="#A52AA2" cx="71" cy="11" r="10"></circle>
+        <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
       </g>
-      <circle id="Oval" fill="#F2D661" cx="11" cy="11" r="10"></circle>
-      <circle id="Oval" fill="#33AB2A" cx="71" cy="11" r="10"></circle>
-      <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square">
-        <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
-      </g>
-    </g>
-    <g id="Top-Pair" transform="translate(79.000000, 139.500000) rotate(-90.000000) translate(-79.000000, -139.500000) translate(38.000000, 118.000000)" stroke="#000000" stroke-width="2">
-      <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square">
-        <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
-      </g>
-      <circle id="Oval" fill="#F2D661" cx="11" cy="11" r="10"></circle>
-      <circle id="Oval" fill="#A52AA2" cx="71" cy="11" r="10"></circle>
-      <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square">
-        <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
-      </g>
-    </g>
-    <circle id="Oval" stroke="#000000" stroke-width="2" fill="#A52A2A" cx="140" cy="140" r="40"></circle>
-    <g id="Top-Pair" transform="translate(141.000000, 201.500000) rotate(-180.000000) translate(-141.000000, -201.500000) translate(100.000000, 180.000000)" stroke="#000000" stroke-width="2">
-      <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square">
-        <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
-      </g>
-      <circle id="Oval" fill="#2A5BA5" cx="11" cy="11" r="10"></circle>
-      <circle id="Oval" fill="#A52AA2" cx="71" cy="11" r="10"></circle>
-      <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square">
-        <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
-        <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+      <circle id="Oval" stroke-width="2" fill="#A52A2A" cx="140" cy="140" r="40"></circle>
+      <g id="Top-Pair" stroke-width="1" transform="translate(141.000000, 201.500000) rotate(-180.000000) translate(-141.000000, -201.500000) translate(100.000000, 180.000000)">
+        <g id="Group" transform="translate(45.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="0.5" y1="0.484375" x2="0.5" y2="30.515625" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
+        <circle id="Oval" stroke-width="2" fill="#2A5BA5" cx="11" cy="11" r="10"></circle>
+        <circle id="Oval" stroke-width="2" fill="#A52AA2" cx="71" cy="11" r="10"></circle>
+        <g id="Group" transform="translate(21.000000, 11.000000)" stroke-linecap="square" stroke-width="2">
+          <line x1="14.5" y1="0.5" x2="14.5" y2="31.5" id="Line-2" fill="#000000"></line>
+          <line x1="0.5" y1="0.5" x2="14.5" y2="0.5" id="Line"></line>
+        </g>
       </g>
     </g>
   </g>

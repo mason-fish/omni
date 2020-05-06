@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 import { useLocation } from 'react-router';
 import styles from './TopNav.scss';
 import routes from '../../constants/routes.json';
+import OmniLogo from '../OmniLogo';
 
 const { Header } = Layout;
 
@@ -11,7 +12,10 @@ export default function TopNav() {
   const location = useLocation();
   return (
     <Header className={styles['top-nav']}>
-      <div className={styles.logo}>OMNI</div>
+      <div className={styles.logo}>
+        <OmniLogo />
+        OMNI
+      </div>
       <Menu
         theme="dark"
         mode="horizontal"
