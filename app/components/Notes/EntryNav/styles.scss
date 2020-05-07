@@ -5,8 +5,6 @@
   max-width: $entry-nav-width;
   height: 100vh;
   overflow: auto;
-  position: fixed;
-  z-index: 1;
 }
 
 .buttons {
@@ -19,4 +17,16 @@
 
 .book-select-dropdown {
   width: 150px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.delete-button {
+  width: 20px !important;
+  height: 20px !important;
 }

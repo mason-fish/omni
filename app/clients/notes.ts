@@ -43,7 +43,14 @@ const doFetch = async (
 
   const response = await fetch(url, opts);
 
-  return response.json();
+  let parsedResponse;
+  try {
+    parsedResponse = await response.json();
+  } catch {
+    return null;
+  }
+
+  return parsedResponse;
 };
 
 export default function newNotesClient(

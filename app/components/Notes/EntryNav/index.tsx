@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Menu, Tooltip, Layout } from 'antd';
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Menu, Tooltip, Layout, Popconfirm } from 'antd';
+import { DownOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import find from 'lodash/find';
 import { useDispatch } from 'react-redux';
 import styles from './styles.scss';
 import CreateBookModalForm from './CreateBookModalForm';
-import { CreateBook, CreateEntry } from '../../../state/notes/flows';
+import {
+  CreateBook,
+  CreateEntry,
+  DeleteBook
+} from '../../../state/notes/flows';
 
 const { Sider } = Layout;
 
@@ -28,6 +32,7 @@ export default function EntryNav({
 }: Props) {
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
+  const [showTrash, setShowTrash] = useState(0);
   const renderEntryTitles = (entrs?: EntryType[]) => {
     return (
       <Menu
@@ -64,7 +69,46 @@ export default function EntryNav({
       {books &&
         books.map(bk => {
           const { name, ID } = bk;
-          return <Menu.Item key={ID}>{name}</Menu.Item>;
+          return (
+            <Menu.Item
+              className={styles['menu-item']}
+              key={ID}
+              onMouseEnter={() => setShowTrash(ID)}
+              onMouseLeave={() => setShowTrash(0)}
+            >
+              <span>{name}</span>
+              {showTrash === ID ? (
+                <Popconfirm
+                  style={{ zIndex: 100 }}
+                  placement="right"
+                  title={`Are you sure delete this book: "${name}"`}
+                  onConfirm={e => {
+                    if (e) e.stopPropagation();
+                    dispatch(DeleteBook(ID));
+                  }}
+                  onCancel={e => {
+                    if (e) e.stopPropagation();
+                  }}
+                  okText="Delete"
+                  cancelText="Cancel"
+                >
+                  <Button
+                    className={styles['delete-button']}
+                    danger
+                    size="small"
+                    type="link"
+                    icon={<DeleteOutlined />}
+                    onClick={e => {
+                      e.stopPropagation();
+                    }}
+                  />
+                </Popconfirm>
+              ) : (
+                // use empty span so that flex keeps items aligned
+                <span />
+              )}
+            </Menu.Item>
+          );
         })}
       <Menu.Divider />
       <Menu.Item key="new-book">+ Create New Book</Menu.Item>
