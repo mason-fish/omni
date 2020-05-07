@@ -8,7 +8,8 @@ import CreateBookModalForm from './CreateBookModalForm';
 import {
   CreateBook,
   CreateEntry,
-  DeleteBook
+  DeleteBook,
+  DeleteEntry
 } from '../../../state/notes/flows';
 
 const { Sider } = Layout;
@@ -33,6 +34,7 @@ export default function EntryNav({
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [showTrash, setShowTrash] = useState(0);
+  const [showEntryTrash, setShowEntryTrash] = useState(0);
   const renderEntryTitles = (entrs?: EntryType[]) => {
     return (
       <Menu
@@ -44,7 +46,44 @@ export default function EntryNav({
         {entrs ? (
           entrs.map(entr => {
             const { title, ID } = entr;
-            return <Menu.Item key={ID}>{title}</Menu.Item>;
+            return (
+              <Menu.Item
+                className={styles['menu-item']}
+                key={ID}
+                onMouseEnter={() => setShowEntryTrash(ID)}
+                onMouseLeave={() => setShowEntryTrash(0)}
+              >
+                <span>{title}</span>
+                {showEntryTrash === ID ? (
+                  <Popconfirm
+                    placement="right"
+                    title={`Are you sure delete this entry: "${title}"?`}
+                    onConfirm={e => {
+                      if (e) e.stopPropagation();
+                      dispatch(DeleteEntry(currentBookID, ID));
+                    }}
+                    onCancel={e => {
+                      if (e) e.stopPropagation();
+                    }}
+                    okText="Delete"
+                    cancelText="Cancel"
+                  >
+                    <Button
+                      className={styles['delete-button']}
+                      danger
+                      size="small"
+                      type="link"
+                      icon={<DeleteOutlined />}
+                      onClick={e => {
+                        e.stopPropagation();
+                      }}
+                    />
+                  </Popconfirm>
+                ) : (
+                  <span className={styles['delete-button']} />
+                )}
+              </Menu.Item>
+            );
           })
         ) : (
           <li>No Entries Exist</li>
@@ -79,9 +118,8 @@ export default function EntryNav({
               <span>{name}</span>
               {showTrash === ID ? (
                 <Popconfirm
-                  style={{ zIndex: 100 }}
                   placement="right"
-                  title={`Are you sure delete this book: "${name}"`}
+                  title={`Are you sure delete this book: "${name}"?`}
                   onConfirm={e => {
                     if (e) e.stopPropagation();
                     dispatch(DeleteBook(ID));
@@ -105,7 +143,7 @@ export default function EntryNav({
                 </Popconfirm>
               ) : (
                 // use empty span so that flex keeps items aligned
-                <span />
+                <span className={styles['delete-button']} />
               )}
             </Menu.Item>
           );

@@ -20,13 +20,16 @@
 }
 
 .menu-item {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
 .delete-button {
-  width: 20px !important;
-  height: 20px !important;
+  width: 15px !important;
+  height: 15px !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
 }

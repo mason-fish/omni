@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import TextArea from 'antd/es/input/TextArea';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { Layout } from 'antd';
+import { Layout, Empty } from 'antd';
 import styles from './styles.scss';
 import { useDebouncedEffect, usePrevious } from '../../../hooks';
 import newNotesClient from '../../../clients/notes';
@@ -61,6 +61,9 @@ export default function Entry({
   }, [currentEntryTitle]);
   useEffect(() => {
     setEntryID(currentEntryID);
+    if (entryID === 0) {
+      setContent('');
+    }
   }, [currentEntryID]);
 
   const updateContent = ({
@@ -94,7 +97,13 @@ export default function Entry({
   const renderContent = () => {
     if (!currentEntry)
       return (
-        <div>Select an existing or create a new entry to get started!</div>
+        <Empty
+          className={styles['empty-view']}
+          description="No Entry Selected"
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        >
+          Select or create a new one to get started!
+        </Empty>
       );
     return isEditView ? (
       <TextArea onChange={updateContent} value={content} autoSize />

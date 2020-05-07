@@ -45,3 +45,12 @@
     list-style: disc;
   }
 }
+
+.empty-view {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding-bottom: 80px !important;
+}

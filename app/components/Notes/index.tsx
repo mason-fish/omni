@@ -44,7 +44,11 @@ export default function Notes(props: Props) {
       />
       <Content style={{ height: '100%' }}>
         <Layout className={styles['notes-wrapper']}>
-          <EntryToolBar isEditView={isEditView} onToggleView={onToggleView} />
+          <EntryToolBar
+            currentEntryID={currentEntryID}
+            isEditView={isEditView}
+            onToggleView={onToggleView}
+          />
           <Entry
             entries={entries}
             currentEntryID={currentEntryID}
