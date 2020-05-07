@@ -33,7 +33,7 @@ export default function Notes(props: Props) {
   };
 
   return (
-    <Layout style={{ height: '100%' }}>
+    <Layout hasSider style={{ height: '100%' }}>
       <EntryNav
         entries={entries}
         books={books}
