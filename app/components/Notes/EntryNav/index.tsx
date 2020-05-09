@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Dropdown, Menu, Tooltip, Layout, Popconfirm } from 'antd';
 import { DownOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import find from 'lodash/find';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.scss';
 import CreateBookModalForm from './CreateBookModalForm';
 import {
@@ -11,23 +11,29 @@ import {
   DeleteBook,
   DeleteEntry
 } from '../../../state/notes/flows';
+import notes from '../../../state/notes/selectors';
 
 const { Sider } = Layout;
 
 type Props = {
   entries?: EntryType[];
   books?: BookType[];
-  currentBookID: number;
-  currentEntryID: number;
   onSelectEntry(bookID: number, entryID: number): void;
   onSelectBook(bookID: number): void;
+};
+
+const useStateWithUpdate = (el: unknown): unknown => {
+  const [elState, setElState] = useState(el);
+  useEffect(() => {
+    setElState(el);
+  }, [el]);
+
+  return elState;
 };
 
 export default function EntryNav({
   entries,
   books,
-  currentEntryID,
-  currentBookID,
   onSelectEntry,
   onSelectBook
 }: Props) {
@@ -35,12 +41,18 @@ export default function EntryNav({
   const [modalVisible, setModalVisible] = useState(false);
   const [showTrash, setShowTrash] = useState(0);
   const [showEntryTrash, setShowEntryTrash] = useState(0);
+  const currentBookID = useSelector(notes.getCurrentBookID());
+  const currentEntryID = useStateWithUpdate(
+    useSelector(notes.getCurrentEntryID(currentBookID))
+  );
+
   const renderEntryTitles = (entrs?: EntryType[]) => {
     return (
       <Menu
         onClick={({ key }) => onSelectEntry(currentBookID, +key)}
         theme="dark"
         defaultSelectedKeys={[`${currentEntryID}`]}
+        selectedKeys={[`${currentEntryID}`]}
         mode="inline"
       >
         {entrs ? (
@@ -119,7 +131,7 @@ export default function EntryNav({
               {showTrash === ID ? (
                 <Popconfirm
                   placement="right"
-                  title={`Are you sure delete this book: "${name}"?`}
+                  title={`Are you sure you want to delete this book: "${name}"?`}
                   onConfirm={e => {
                     if (e) e.stopPropagation();
                     dispatch(DeleteBook(ID));
@@ -128,7 +140,6 @@ export default function EntryNav({
                     if (e) e.stopPropagation();
                   }}
                   okText="Delete"
-                  cancelText="Cancel"
                 >
                   <Button
                     className={styles['delete-button']}
@@ -180,6 +191,7 @@ export default function EntryNav({
         <Tooltip title="New Entry">
           <Button
             onClick={() => onCreateNewEntry()}
+            disabled={currentBookID === 0}
             type="primary"
             icon={<PlusOutlined />}
           />

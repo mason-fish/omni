@@ -39,8 +39,6 @@ export default function Notes(props: Props) {
         books={books}
         onSelectBook={onSelectBook}
         onSelectEntry={onSelectEntry}
-        currentBookID={currentBookID}
-        currentEntryID={currentEntryID}
       />
       <Content style={{ height: '100%' }}>
         <Layout className={styles['notes-wrapper']}>

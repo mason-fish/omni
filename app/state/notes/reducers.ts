@@ -14,13 +14,15 @@ import {
   SET_CURRENT_ENTRY_ID
 } from './types';
 
-const initialState: State = {
-  currentBookID: 0,
-  books: {}
+const initialState = (): State => {
+  return {
+    currentBookID: 0,
+    books: {}
+  };
 };
 
 export default function reducers(
-  state = initialState,
+  state = initialState(),
   action: NotesActionTypes
 ): State {
   const books = {} as BooksState;

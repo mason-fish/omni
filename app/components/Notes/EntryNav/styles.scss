@@ -5,6 +5,10 @@
   max-width: $entry-nav-width;
   height: 100vh;
   overflow: auto;
+
+  ul {
+    height: 100%;
+  }
 }
 
 .buttons {

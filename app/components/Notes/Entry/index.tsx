@@ -61,7 +61,7 @@ export default function Entry({
   }, [currentEntryTitle]);
   useEffect(() => {
     setEntryID(currentEntryID);
-    if (entryID === 0) {
+    if (currentEntryID === 0) {
       setContent('');
     }
   }, [currentEntryID]);
