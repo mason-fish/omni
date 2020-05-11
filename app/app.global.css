@@ -4,6 +4,8 @@
  */
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import '~antd/dist/antd.css';
+@import '~react-markdown-editor-lite/lib/index.css';
+@import '~highlight.js/styles/atom-one-dark.css';
 
 * {
   /* means width and height of elements are not adjusted by padding and margin */
@@ -53,10 +55,6 @@ h2 {
 
 p {
   font-size: 24px;
-}
-
-li {
-  list-style: none;
 }
 
 a {

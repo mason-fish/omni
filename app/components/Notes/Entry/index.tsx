@@ -1,10 +1,19 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import find from 'lodash/find';
-import ReactMarkdown from 'react-markdown';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import hljs from 'highlight.js';
 import TextArea from 'antd/es/input/TextArea';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { Layout, Empty } from 'antd';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import mkdCheckBox from 'markdown-it-checkbox';
+import mkdAnchor from 'markdown-it-anchor';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import mkdToc from 'markdown-it-table-of-contents';
 import styles from './styles.scss';
 import { useDebouncedEffect, usePrevious } from '../../../hooks';
 import newNotesClient from '../../../clients/notes';
@@ -12,15 +21,33 @@ import { refreshEntryTitle } from '../../../state/notes/actions';
 
 const { Content } = Layout;
 
+const mdParser = new MarkdownIt({
+  highlight: (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+        // eslint-disable-next-line no-empty
+      } catch (_) {}
+    }
+
+    return ''; // use external default escaping
+  },
+  html: true,
+  linkify: true,
+  typographer: true,
+  langPrefix: 'language-'
+});
+mdParser.use(mkdCheckBox);
+mdParser.use(mkdAnchor);
+mdParser.use(mkdToc);
+
 type Props = {
   entries?: EntryType[];
-  isEditView: boolean;
   currentEntryID: number;
   currentBookID: number;
 };
 
 export default function Entry({
-  isEditView,
   entries,
   currentEntryID,
   currentBookID
@@ -66,10 +93,8 @@ export default function Entry({
     }
   }, [currentEntryID]);
 
-  const updateContent = ({
-    target: { value }
-  }: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(value);
+  const updateContent = ({ text }: any) => {
+    setContent(text);
   };
 
   const updateTitle = ({
@@ -89,7 +114,6 @@ export default function Entry({
         onChange={({ target: { value } }) => setTitle(value)}
         value={title}
         autoSize
-        readOnly={!isEditView}
       />
     );
   };
@@ -105,10 +129,13 @@ export default function Entry({
           Select or create a new one to get started!
         </Empty>
       );
-    return isEditView ? (
-      <TextArea onChange={updateContent} value={content} autoSize />
-    ) : (
-      <ReactMarkdown source={content} />
+    return (
+      <MdEditor
+        value={content}
+        style={{ height: '100%' }}
+        renderHTML={text => mdParser.render(text)}
+        onChange={updateContent}
+      />
     );
   };
 
@@ -128,7 +155,6 @@ export default function Entry({
   return (
     <Content className={styles.entry}>
       {renderEntryMeta()}
-      {currentEntry && <hr />}
       {renderContent()}
     </Content>
   );
